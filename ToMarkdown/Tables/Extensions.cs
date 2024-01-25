@@ -8,26 +8,79 @@ namespace ToMarkdown.Tables
 {
     public static class Extensions
     {
+        /// <summary>
+        /// Allows you to add custom headers.
+        /// The parameter <paramref name="columnHeaders"/> must match the exact amount of puplic properties that a class has.
+        /// For properties you are not interested in changing the name for, put a "*" for that given item.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="columnHeaders"></param>
+        /// <returns></returns>
+        public static string ToMarkdown<T>(this IEnumerable<T> list, List<string> columnHeaders)
+        {
+            if (list.Count() == 0)
+                return "";
+
+            if (typeof(T).IsClass && typeof(T) != typeof(string) && typeof(T) != typeof(decimal))
+                return ClassTable(list, columnHeaders);
+            return PrimitivesTable(list, columnHeaders[0]);
+        }
+
+        /// <summary>
+        /// Allows you to add custom headers.
+        /// The parameter <paramref name="columnHeader"/> must match the exact amount of puplic properties that a class has.
+        /// For properties you are not interested in changing the name for, put a "*" for that given item.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="columnHeader"></param>
+        /// <returns></returns>
+        public static string ToMarkdown<T>(this IEnumerable<T> list, string columnHeader)
+        {
+            if (list.Count() == 0)
+                return "";
+
+            if (typeof(T).IsClass && typeof(T) != typeof(string) && typeof(T) != typeof(decimal))
+                return ClassTable(list, new List<string>() { columnHeader });
+            return PrimitivesTable(list, columnHeader);
+        }
+
+        /// <summary>
+        /// Converts a IEnumerable into a Markdown table.
+        /// If the IEnumerable is of a primitive type, the header will be the typename
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns>Markdown table as a string</returns>
         public static string ToMarkdown<T>(this IEnumerable<T> list)
         {
             if (list.Count() == 0)
                 return "";
 
             if (typeof(T).IsClass && typeof(T) != typeof(string) && typeof(T) != typeof(decimal))
-                return ClassTable(list);
-            return PrimitivesTable(list);
+                return ClassTable(list, Enumerable.Repeat("*", typeof(T).GetProperties().Length).ToList());
+            return PrimitivesTable(list, "*");
         }
 
-        private static string ClassTable<T>(IEnumerable<T> list)
+        private static string ClassTable<T>(IEnumerable<T> list, List<string> columnHeaders)
         {
             var sb = new StringBuilder();
 
             var propInfo = typeof(T).GetProperties();
             if (propInfo.Length == 0)
                 throw new ArgumentException("The class does not have any properties?");
+            if (propInfo.Length != columnHeaders.Count)
+                throw new ArgumentException($"Custom column header count ({columnHeaders.Count}) must match property count ({propInfo.Length})!");
+
             sb.Append("|");
-            foreach (var info in propInfo)
-                sb.Append($" {info.Name} |");
+            for(int i = 0; i < propInfo.Length; i++)
+            {
+                if (columnHeaders[i] != "*")
+                    sb.Append($" {columnHeaders[i]} |");
+                else
+                    sb.Append($" {propInfo[i].Name} |");
+            }
             sb.AppendLine();
             sb.AppendLine(GenerateSpacer(propInfo.Length));
             foreach (var item in list)
@@ -46,10 +99,13 @@ namespace ToMarkdown.Tables
             return sb.ToString();
         }
 
-        private static string PrimitivesTable<T>(IEnumerable<T> list)
+        private static string PrimitivesTable<T>(IEnumerable<T> list, string columnHeader)
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"| {typeof(T).Name} |");
+            if (columnHeader != "*")
+                sb.AppendLine($"| {columnHeader} |");
+            else
+                sb.AppendLine($"| {typeof(T).Name} |");
             sb.AppendLine(GenerateSpacer(1));
             foreach (var item in list)
                 sb.AppendLine($"| {item} |");
