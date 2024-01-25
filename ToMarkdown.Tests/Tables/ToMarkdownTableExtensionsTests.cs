@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ToMarkdown.Tables;
-using ToMarkdown.Tests.Tables.TestClasses;
+using ToMarkdown.Tests.TestClasses;
 
 namespace ToMarkdown.Tests.Tables
 {
     [TestClass]
-    public class ExtensionsTests
+    public class ToMarkdownTableExtensionsTests
     {
         [TestMethod]
         public void Can_ReturnEmptyIfEmpty_Primitives()
@@ -140,13 +140,13 @@ namespace ToMarkdown.Tests.Tables
 
         private void EmptyCheck<T>(IEnumerable<T> item)
         {
-            var result = item.ToMarkdown();
+            var result = item.ToMarkdownTable();
             Assert.AreEqual("", result);
         }
 
         private void HeaderCheck<T>(IEnumerable<T> item, List<string> input, List<string> expected)
         {
-            var result = item.ToMarkdown(input);
+            var result = item.ToMarkdownTable(input);
             var split = result.Split(Environment.NewLine).ToList();
             var columns = split[0].Split('|').ToList();
             columns.RemoveAll(x => x == "");
@@ -156,7 +156,7 @@ namespace ToMarkdown.Tests.Tables
 
         private void HeaderCheck<T>(IEnumerable<T> item, string input, string expected)
         {
-            var result = item.ToMarkdown(input);
+            var result = item.ToMarkdownTable(input);
             var split = result.Split(Environment.NewLine).ToList();
             var columns = split[0].Split('|').ToList();
             columns.RemoveAll(x => x == "");
@@ -165,7 +165,7 @@ namespace ToMarkdown.Tests.Tables
 
         private void TableSizeCheck<T>(IEnumerable<T> item, int expectedColumns, int expectedRows)
         {
-            var result = item.ToMarkdown();
+            var result = item.ToMarkdownTable();
             var split = result.Split(Environment.NewLine).ToList();
             split.RemoveAll(x => x == "");
             Assert.AreEqual(expectedRows, split.Count);
