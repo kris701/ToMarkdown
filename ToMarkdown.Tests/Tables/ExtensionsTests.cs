@@ -47,53 +47,93 @@ namespace ToMarkdown.Tests.Tables
         [TestMethod]
         public void Can_ReturnSingleColumn_Primitives()
         {
-            ColumnCheck(new List<int>() { 1 }, 1, 3);
-            ColumnCheck(new List<string>() { "abc" }, 1, 3);
+            TableSizeCheck(new List<int>() { 1 }, 1, 3);
+            TableSizeCheck(new List<string>() { "abc" }, 1, 3);
 
-            ColumnCheck(new HashSet<int>() { 1 }, 1, 3);
-            ColumnCheck(new HashSet<string>() { "abc" }, 1, 3);
+            TableSizeCheck(new HashSet<int>() { 1 }, 1, 3);
+            TableSizeCheck(new HashSet<string>() { "abc" }, 1, 3);
         }
 
         [TestMethod]
         public void Can_ReturnSingleColumn_Complex()
         {
-            ColumnCheck(new List<TestClass1>() { new TestClass1() }, 2, 3);
-            ColumnCheck(new List<TestClass2>() { new TestClass2() }, 4, 3);
-            ColumnCheck(new List<TestClass3>() { new TestClass3() }, 2, 3);
+            TableSizeCheck(new List<TestClass1>() { new TestClass1() }, 2, 3);
+            TableSizeCheck(new List<TestClass2>() { new TestClass2() }, 4, 3);
+            TableSizeCheck(new List<TestClass3>() { new TestClass3() }, 2, 3);
 
-            ColumnCheck(new HashSet<TestClass1>() { new TestClass1() }, 2, 3);
-            ColumnCheck(new HashSet<TestClass2>() { new TestClass2() }, 4, 3);
-            ColumnCheck(new HashSet<TestClass3>() { new TestClass3() }, 2, 3);
+            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1() }, 2, 3);
+            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2() }, 4, 3);
+            TableSizeCheck(new HashSet<TestClass3>() { new TestClass3() }, 2, 3);
         }
 
         [TestMethod]
         public void Can_ReturnMultipleColumn_Primitives()
         {
-            ColumnCheck(new List<int>() { 1, 19, 325 }, 1, 5);
-            ColumnCheck(new List<int>() { 1, 19, 325, 1355113541 }, 1, 6);
-            ColumnCheck(new List<string>() { "abc", "q" }, 1, 4);
-            ColumnCheck(new List<string>() { "abc", "q", "ccc" }, 1, 5);
+            TableSizeCheck(new List<int>() { 1, 19, 325 }, 1, 5);
+            TableSizeCheck(new List<int>() { 1, 19, 325, 1355113541 }, 1, 6);
+            TableSizeCheck(new List<string>() { "abc", "q" }, 1, 4);
+            TableSizeCheck(new List<string>() { "abc", "q", "ccc" }, 1, 5);
 
-            ColumnCheck(new HashSet<int>() { 1, 19, 325 }, 1, 5);
-            ColumnCheck(new HashSet<int>() { 1, 19, 325, 1355113541 }, 1, 6);
-            ColumnCheck(new HashSet<string>() { "abc", "q" }, 1, 4);
-            ColumnCheck(new HashSet<string>() { "abc", "q", "ccc" }, 1, 5);
+            TableSizeCheck(new HashSet<int>() { 1, 19, 325 }, 1, 5);
+            TableSizeCheck(new HashSet<int>() { 1, 19, 325, 1355113541 }, 1, 6);
+            TableSizeCheck(new HashSet<string>() { "abc", "q" }, 1, 4);
+            TableSizeCheck(new HashSet<string>() { "abc", "q", "ccc" }, 1, 5);
         }
 
         [TestMethod]
         public void Can_ReturnMultipleColumn_Complex()
         {
-            ColumnCheck(new List<TestClass1>() { new TestClass1(), new TestClass1() }, 2, 4);
-            ColumnCheck(new List<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }, 2, 5);
-            ColumnCheck(new List<TestClass2>() { new TestClass2(), new TestClass2() }, 4, 4);
-            ColumnCheck(new List<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }, 4, 5);
-            ColumnCheck(new List<TestClass3>() { new TestClass3(), new TestClass3() }, 2, 4);
-            ColumnCheck(new List<TestClass3>() { new TestClass3(), new TestClass3(), new TestClass3() }, 2, 5);
+            TableSizeCheck(new List<TestClass1>() { new TestClass1(), new TestClass1() }, 2, 4);
+            TableSizeCheck(new List<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }, 2, 5);
+            TableSizeCheck(new List<TestClass2>() { new TestClass2(), new TestClass2() }, 4, 4);
+            TableSizeCheck(new List<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }, 4, 5);
+            TableSizeCheck(new List<TestClass3>() { new TestClass3(), new TestClass3() }, 2, 4);
+            TableSizeCheck(new List<TestClass3>() { new TestClass3(), new TestClass3(), new TestClass3() }, 2, 5);
 
-            ColumnCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1() }, 2, 4);
-            ColumnCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }, 2, 5);
-            ColumnCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2() }, 4, 4);
-            ColumnCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }, 4, 5);
+            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1() }, 2, 4);
+            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }, 2, 5);
+            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2() }, 4, 4);
+            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }, 4, 5);
+        }
+
+        [TestMethod]
+        public void Can_SetCustomColumnHeaders_Primitive()
+        {
+            HeaderCheck(
+                new List<int>() { 1, 2 },
+                "*",
+                "Int32");
+            HeaderCheck(
+                new List<int>() { 1, 2 },
+                "Special",
+                "Special");
+        }
+
+        [TestMethod]
+        public void Can_SetCustomColumnHeaders_Complex()
+        {
+            HeaderCheck(
+                new List<TestClass4>() { new TestClass4() },
+                "*",
+                "Value1");
+
+            HeaderCheck(
+                new List<TestClass4>() { new TestClass4() },
+                "new va",
+                "new va");
+
+            HeaderCheck(
+                new List<TestClass1>() { new TestClass1(), new TestClass1() }, 
+                new List<string>() { "*", "*" },
+                new List<string>() { "Value1", "Value2" });
+            HeaderCheck(
+                new List<TestClass1>() { new TestClass1(), new TestClass1() },
+                new List<string>() { "new name", "*" },
+                new List<string>() { "new name", "Value2" });
+            HeaderCheck(
+                new List<TestClass1>() { new TestClass1(), new TestClass1() },
+                new List<string>() { "new name", "other (m/s)" },
+                new List<string>() { "new name", "other (m/s)" });
         }
 
         #region Helper Methods 
@@ -104,7 +144,26 @@ namespace ToMarkdown.Tests.Tables
             Assert.AreEqual("", result);
         }
 
-        private void ColumnCheck<T>(IEnumerable<T> item, int expectedColumns, int expectedRows)
+        private void HeaderCheck<T>(IEnumerable<T> item, List<string> input, List<string> expected)
+        {
+            var result = item.ToMarkdown(input);
+            var split = result.Split(Environment.NewLine).ToList();
+            var columns = split[0].Split('|').ToList();
+            columns.RemoveAll(x => x == "");
+            for (int i = 0; i < expected.Count; i++)
+                Assert.AreEqual(expected[i], columns[i].Trim());
+        }
+
+        private void HeaderCheck<T>(IEnumerable<T> item, string input, string expected)
+        {
+            var result = item.ToMarkdown(input);
+            var split = result.Split(Environment.NewLine).ToList();
+            var columns = split[0].Split('|').ToList();
+            columns.RemoveAll(x => x == "");
+            Assert.AreEqual(expected, columns[0].Trim());
+        }
+
+        private void TableSizeCheck<T>(IEnumerable<T> item, int expectedColumns, int expectedRows)
         {
             var result = item.ToMarkdown();
             var split = result.Split(Environment.NewLine).ToList();
