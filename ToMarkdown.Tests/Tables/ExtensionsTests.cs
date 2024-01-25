@@ -32,10 +32,16 @@ namespace ToMarkdown.Tests.Tables
         public void Can_ReturnEmptyIfEmpty_Complex()
         {
             EmptyCheck(new List<TestClass1>());
+            EmptyCheck(new List<TestClass2>());
+            EmptyCheck(new List<TestClass3>());
 
             EmptyCheck(new Queue<TestClass1>());
+            EmptyCheck(new Queue<TestClass2>());
+            EmptyCheck(new Queue<TestClass3>());
 
             EmptyCheck(new HashSet<TestClass1>());
+            EmptyCheck(new HashSet<TestClass2>());
+            EmptyCheck(new HashSet<TestClass3>());
         }
 
         [TestMethod]
@@ -52,8 +58,12 @@ namespace ToMarkdown.Tests.Tables
         public void Can_ReturnSingleColumn_Complex()
         {
             ColumnCheck(new List<TestClass1>() { new TestClass1() }, 2, 3);
+            ColumnCheck(new List<TestClass2>() { new TestClass2() }, 4, 3);
+            ColumnCheck(new List<TestClass3>() { new TestClass3() }, 2, 3);
 
             ColumnCheck(new HashSet<TestClass1>() { new TestClass1() }, 2, 3);
+            ColumnCheck(new HashSet<TestClass2>() { new TestClass2() }, 4, 3);
+            ColumnCheck(new HashSet<TestClass3>() { new TestClass3() }, 2, 3);
         }
 
         [TestMethod]
@@ -75,9 +85,15 @@ namespace ToMarkdown.Tests.Tables
         {
             ColumnCheck(new List<TestClass1>() { new TestClass1(), new TestClass1() }, 2, 4);
             ColumnCheck(new List<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }, 2, 5);
+            ColumnCheck(new List<TestClass2>() { new TestClass2(), new TestClass2() }, 4, 4);
+            ColumnCheck(new List<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }, 4, 5);
+            ColumnCheck(new List<TestClass3>() { new TestClass3(), new TestClass3() }, 2, 4);
+            ColumnCheck(new List<TestClass3>() { new TestClass3(), new TestClass3(), new TestClass3() }, 2, 5);
 
             ColumnCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1() }, 2, 4);
             ColumnCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }, 2, 5);
+            ColumnCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2() }, 4, 4);
+            ColumnCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }, 4, 5);
         }
 
         #region Helper Methods 
