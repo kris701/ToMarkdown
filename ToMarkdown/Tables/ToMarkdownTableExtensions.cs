@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace ToMarkdown.Tables
 {
-    public static class Extensions
+    /// <summary>
+    /// Extensions to create markdown tables.
+    /// </summary>
+    public static class ToMarkdownTableExtensions
     {
         /// <summary>
         /// Allows you to add custom headers.
@@ -17,7 +20,7 @@ namespace ToMarkdown.Tables
         /// <param name="list"></param>
         /// <param name="columnHeaders"></param>
         /// <returns></returns>
-        public static string ToMarkdown<T>(this IEnumerable<T> list, List<string> columnHeaders)
+        public static string ToMarkdownTable<T>(this IEnumerable<T> list, List<string> columnHeaders)
         {
             if (list.Count() == 0)
                 return "";
@@ -36,7 +39,7 @@ namespace ToMarkdown.Tables
         /// <param name="list"></param>
         /// <param name="columnHeader"></param>
         /// <returns></returns>
-        public static string ToMarkdown<T>(this IEnumerable<T> list, string columnHeader)
+        public static string ToMarkdownTable<T>(this IEnumerable<T> list, string columnHeader)
         {
             if (list.Count() == 0)
                 return "";
@@ -53,7 +56,7 @@ namespace ToMarkdown.Tables
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
         /// <returns>Markdown table as a string</returns>
-        public static string ToMarkdown<T>(this IEnumerable<T> list)
+        public static string ToMarkdownTable<T>(this IEnumerable<T> list)
         {
             if (list.Count() == 0)
                 return "";

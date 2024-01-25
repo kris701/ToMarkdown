@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToMarkdown.Tests.Tables.TestClasses
+namespace ToMarkdown.Tests.TestClasses
 {
     internal class TestClass4
     {
