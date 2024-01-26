@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ToMarkdown.Tables
+namespace ToMarkdown.Lists
 {
     /// <summary>
     /// Extensions to create markdown lists.
@@ -14,10 +14,12 @@ namespace ToMarkdown.Tables
         /// <summary>
         /// <seealso href="https://www.markdownguide.org/basic-syntax/#unordered-lists">List styles</seealso>. The options are "-", "*" and "+"
         /// </summary>
-        public enum ListStyle { 
-            Dash, 
+        public enum ListStyle {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+            Dash,
             Star, 
-            Plus 
+            Plus
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
         private static char StyleToChar(ListStyle style)
         {

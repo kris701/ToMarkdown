@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ToMarkdown.Lists;
 using ToMarkdown.Tables;
 using ToMarkdown.Tests.TestClasses;
-using static ToMarkdown.Tables.ToMarkdownListExtensions;
+using static ToMarkdown.Lists.ToMarkdownListExtensions;
 
 namespace ToMarkdown.Tests.Lists
 {

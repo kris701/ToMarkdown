@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace ToMarkdown.Strings
 {
@@ -15,10 +14,12 @@ namespace ToMarkdown.Strings
         /// <summary>
         /// Styles for markdown output strings
         /// </summary>
-        public enum StringStyle { 
+        public enum StringStyle {
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             None,
             Heading1, Heading2, Heading3,
             Bold, Italic, StrikeThrough, Code, BlockQuote, Highlight, Subscript, Superscript
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
         /// <summary>
         /// Converts a string into a markdown string with a given <seealso cref="StringStyle"/>.
