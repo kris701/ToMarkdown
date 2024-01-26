@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace ToMarkdown.Strings
 {
@@ -20,7 +21,7 @@ namespace ToMarkdown.Strings
             Bold, Italic, StrikeThrough, Code, BlockQuote
         }
         /// <summary>
-        /// Converts a string into a markdown string with a given style.
+        /// Converts a string into a markdown string with a given <seealso cref="StringStyle"/>.
         /// </summary>
         /// <param name="str"></param>
         /// <param name="style"></param>
@@ -44,7 +45,7 @@ namespace ToMarkdown.Strings
         }
 
         /// <summary>
-        /// Converts a string to a markdown link, with the link being the parameter
+        /// Converts a string to a <seealso href="https://www.markdownguide.org/basic-syntax/#links">markdown link</seealso>, with the link being the parameter
         /// </summary>
         /// <param name="str"></param>
         /// <param name="link"></param>
@@ -55,7 +56,7 @@ namespace ToMarkdown.Strings
         }
 
         /// <summary>
-        /// Converts a string to a markdown image link, with the image link being the parameter
+        /// Converts a string to a <seealso href="https://www.markdownguide.org/basic-syntax/#images-1">markdown image link</seealso>, with the image link being the parameter
         /// </summary>
         /// <param name="str"></param>
         /// <param name="imageLink"></param>
@@ -63,6 +64,23 @@ namespace ToMarkdown.Strings
         public static string ToMarkdownImage(this string str, string imageLink)
         {
             return $"![{str}]({imageLink})";
+        }
+
+        /// <summary>
+        /// Converts a string to a markdown <seealso href="https://www.markdownguide.org/extended-syntax/#fenced-code-blocks">code block</seealso>.
+        /// You can also give it what language it should be <seealso href="https://www.markdownguide.org/extended-syntax/#syntax-highlighting">syntax highlighted</seealso> as.
+        /// 
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="language"></param>
+        /// <returns></returns>
+        public static string ToMarkdownCodeBlock(this string str, string language = "")
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine($"```{language}");
+            sb.AppendLine(str);
+            sb.AppendLine("```");
+            return sb.ToString();
         }
     }
 }

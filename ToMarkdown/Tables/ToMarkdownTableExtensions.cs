@@ -50,7 +50,7 @@ namespace ToMarkdown.Tables
         }
 
         /// <summary>
-        /// Converts a IEnumerable into a Markdown table.
+        /// Converts a <seealso cref="IEnumerable{T}"/> into a <seealso href="https://www.markdownguide.org/extended-syntax/#tables">markdown table</seealso>.
         /// If the IEnumerable is of a primitive type, the header will be the typename
         /// </summary>
         /// <typeparam name="T"></typeparam>

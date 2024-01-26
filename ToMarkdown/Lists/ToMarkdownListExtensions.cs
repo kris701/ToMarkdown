@@ -12,9 +12,13 @@ namespace ToMarkdown.Tables
     public static class ToMarkdownListExtensions
     {
         /// <summary>
-        /// List styles. The options are "-", "*" and "+"
+        /// <seealso href="https://www.markdownguide.org/basic-syntax/#unordered-lists">List styles</seealso>. The options are "-", "*" and "+"
         /// </summary>
-        public enum ListStyle { Dash, Star, Plus }
+        public enum ListStyle { 
+            Dash, 
+            Star, 
+            Plus 
+        }
         private static char StyleToChar(ListStyle style)
         {
             switch(style)
@@ -27,7 +31,7 @@ namespace ToMarkdown.Tables
         }
 
         /// <summary>
-        /// Convert a list into a list in markdown format.
+        /// Convert a <seealso cref="IEnumerable{T}"/> into a <seealso href="https://www.markdownguide.org/basic-syntax/#lists-1">markdown list</seealso>.
         /// You can additionally use different list styles here.
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -47,7 +51,7 @@ namespace ToMarkdown.Tables
         }
 
         /// <summary>
-        /// Convert a list in a enumerated markdown list.
+        /// Convert a <seealso cref="IEnumerable{T}"/> in a enumerated <seealso href="https://www.markdownguide.org/basic-syntax/#lists-1">markdown list</seealso>.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="list"></param>
