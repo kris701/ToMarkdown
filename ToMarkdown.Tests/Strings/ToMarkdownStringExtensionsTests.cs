@@ -1,4 +1,4 @@
-﻿using static ToMarkdown.Strings.ToMarkdownStringExtensions;
+﻿using static ToMarkdown.ToMarkdownExtensions;
 
 namespace ToMarkdown.Tests.Strings
 {

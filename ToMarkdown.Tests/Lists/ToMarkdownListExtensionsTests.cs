@@ -1,6 +1,5 @@
-﻿using ToMarkdown.Lists;
-using ToMarkdown.Tests.TestClasses;
-using static ToMarkdown.Lists.ToMarkdownListExtensions;
+﻿using ToMarkdown.Tests.TestClasses;
+using static ToMarkdown.ToMarkdownExtensions;
 
 namespace ToMarkdown.Tests.Lists
 {

@@ -1,11 +1,8 @@
 ﻿using System.Text;
 
-namespace ToMarkdown.Strings
+namespace ToMarkdown
 {
-    /// <summary>
-    /// Extensions to format markdown strings
-    /// </summary>
-    public static class ToMarkdownStringExtensions
+    public static partial class ToMarkdownExtensions
     {
         /// <summary>
         /// Styles for markdown output strings
@@ -21,26 +18,26 @@ namespace ToMarkdown.Strings
         /// <summary>
         /// Converts a string into a markdown string with a given <seealso cref="StringStyle"/>.
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="item"></param>
         /// <param name="style"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentException"></exception>
-        public static string ToMarkdown(this string str, StringStyle style = StringStyle.None)
+        public static string ToMarkdown<T>(this T item, StringStyle style = StringStyle.None)
         {
             switch (style)
             {
-                case StringStyle.None: return str;
-                case StringStyle.Heading1: return $"# {str}";
-                case StringStyle.Heading2: return $"## {str}";
-                case StringStyle.Heading3: return $"### {str}";
-                case StringStyle.Bold: return $"**{str}**";
-                case StringStyle.Italic: return $"*{str}*";
-                case StringStyle.StrikeThrough: return $"~~{str}~~";
-                case StringStyle.Code: return $"`{str}`";
-                case StringStyle.BlockQuote: return $"> {str}";
-                case StringStyle.Highlight: return $"=={str}==";
-                case StringStyle.Subscript: return $"~{str}~";
-                case StringStyle.Superscript: return $"^{str}^";
+                case StringStyle.None: return $"{item}";
+                case StringStyle.Heading1: return $"# {item}";
+                case StringStyle.Heading2: return $"## {item}";
+                case StringStyle.Heading3: return $"### {item}";
+                case StringStyle.Bold: return $"**{item}**";
+                case StringStyle.Italic: return $"*{item}*";
+                case StringStyle.StrikeThrough: return $"~~{item}~~";
+                case StringStyle.Code: return $"`{item}`";
+                case StringStyle.BlockQuote: return $"> {item}";
+                case StringStyle.Highlight: return $"=={item}==";
+                case StringStyle.Subscript: return $"~{item}~";
+                case StringStyle.Superscript: return $"^{item}^";
                 default: throw new ArgumentException("Unknown string style!");
             }
         }
@@ -48,37 +45,31 @@ namespace ToMarkdown.Strings
         /// <summary>
         /// Converts a string to a <seealso href="https://www.markdownguide.org/basic-syntax/#links">markdown link</seealso>, with the link being the parameter
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="item"></param>
         /// <param name="link"></param>
         /// <returns></returns>
-        public static string ToMarkdownLink(this string str, string link)
-        {
-            return $"[{str}]({link})";
-        }
+        public static string ToMarkdownLink<T>(this T item, string link) => $"[{item}]({link})";
 
         /// <summary>
         /// Converts a string to a <seealso href="https://www.markdownguide.org/basic-syntax/#images-1">markdown image link</seealso>, with the image link being the parameter
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="item"></param>
         /// <param name="imageLink"></param>
         /// <returns></returns>
-        public static string ToMarkdownImage(this string str, string imageLink)
-        {
-            return $"![{str}]({imageLink})";
-        }
+        public static string ToMarkdownImage<T>(this T item, string imageLink) => $"![{item}]({imageLink})";
 
         /// <summary>
         /// Converts a string to a markdown <seealso href="https://www.markdownguide.org/extended-syntax/#fenced-code-blocks">code block</seealso>.
         /// You can also give it what language it should be <seealso href="https://www.markdownguide.org/extended-syntax/#syntax-highlighting">syntax highlighted</seealso> as.
         /// </summary>
-        /// <param name="str"></param>
+        /// <param name="item"></param>
         /// <param name="language"></param>
         /// <returns></returns>
-        public static string ToMarkdownCodeBlock(this string str, string language = "")
+        public static string ToMarkdownCodeBlock<T>(this T item, string language = "")
         {
             var sb = new StringBuilder();
             sb.AppendLine($"```{language}");
-            sb.AppendLine(str);
+            sb.AppendLine($"{item}");
             sb.AppendLine("```");
             return sb.ToString();
         }
