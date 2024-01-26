@@ -6,3 +6,5 @@ You can find this as a package on [Nuget](https://www.nuget.org/packages/ToMarkd
 Currently there are:
 * [`IEnumerable` to Table](./ToMarkdown/Tables/ToMarkdownTableExtensions.cs)
 * [`IEnumerable` to List](./ToMarkdown/Lists/ToMarkdownListExtensions.cs)
+* [`string` to markdown format](./ToMarkdown/Strings/ToMarkdownStringExtensions.cs)
+  * Includes links and different text formats

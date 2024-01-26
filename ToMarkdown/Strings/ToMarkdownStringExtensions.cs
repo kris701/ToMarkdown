@@ -15,9 +15,9 @@ namespace ToMarkdown.Strings
         /// Styles for markdown output strings
         /// </summary>
         public enum StringStyle { 
-            None, 
+            None,
             Heading1, Heading2, Heading3,
-            Bold, Italic, StrikeThrough, Code
+            Bold, Italic, StrikeThrough, Code, BlockQuote
         }
         /// <summary>
         /// Converts a string into a markdown string with a given style.
@@ -38,8 +38,31 @@ namespace ToMarkdown.Strings
                 case StringStyle.Italic: return $"*{str}*";
                 case StringStyle.StrikeThrough: return $"~~{str}~~";
                 case StringStyle.Code: return $"`{str}`";
+                case StringStyle.BlockQuote: return $"> {str}";
                 default: throw new ArgumentException("Unknown string style!");
             }
+        }
+
+        /// <summary>
+        /// Converts a string to a markdown link, with the link being the parameter
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="link"></param>
+        /// <returns></returns>
+        public static string ToMarkdownLink(this string str, string link)
+        {
+            return $"[{str}]({link})";
+        }
+
+        /// <summary>
+        /// Converts a string to a markdown image link, with the image link being the parameter
+        /// </summary>
+        /// <param name="str"></param>
+        /// <param name="imageLink"></param>
+        /// <returns></returns>
+        public static string ToMarkdownImage(this string str, string imageLink)
+        {
+            return $"![{str}]({imageLink})";
         }
     }
 }

@@ -23,5 +23,23 @@ namespace ToMarkdown.Tests.Strings
         {
             Assert.AreEqual(expected, input.ToMarkdown(style));
         }
+
+        [TestMethod]
+        [DataRow("abc", "www.google.com", "[abc](www.google.com)")]
+        [DataRow("abc aa", "www.google.com", "[abc aa](www.google.com)")]
+        [DataRow("abc aa", "www.google.com www.google.com", "[abc aa](www.google.com www.google.com)")]
+        public void Can_ConvertStringToLink(string text, string link, string expected)
+        {
+            Assert.AreEqual(expected, text.ToMarkdownLink(link));
+        }
+
+        [TestMethod]
+        [DataRow("abc", "www.google.com", "![abc](www.google.com)")]
+        [DataRow("abc aa", "www.google.com", "![abc aa](www.google.com)")]
+        [DataRow("abc aa", "www.google.com www.google.com", "![abc aa](www.google.com www.google.com)")]
+        public void Can_ConvertStringToImage(string text, string link, string expected)
+        {
+            Assert.AreEqual(expected, text.ToMarkdownImage(link));
+        }
     }
 }
