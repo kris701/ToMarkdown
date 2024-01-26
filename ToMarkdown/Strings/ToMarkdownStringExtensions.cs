@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ToMarkdown.Strings
 {
@@ -14,7 +10,8 @@ namespace ToMarkdown.Strings
         /// <summary>
         /// Styles for markdown output strings
         /// </summary>
-        public enum StringStyle {
+        public enum StringStyle
+        {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             None,
             Heading1, Heading2, Heading3,

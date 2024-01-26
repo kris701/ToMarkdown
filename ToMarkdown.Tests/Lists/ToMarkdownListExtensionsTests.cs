@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToMarkdown.Lists;
-using ToMarkdown.Tables;
+﻿using ToMarkdown.Lists;
 using ToMarkdown.Tests.TestClasses;
 using static ToMarkdown.Lists.ToMarkdownListExtensions;
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ToMarkdown.Tables
 {
@@ -77,7 +73,7 @@ namespace ToMarkdown.Tables
                 throw new ArgumentException($"Custom column header count ({columnHeaders.Count}) must match property count ({propInfo.Length})!");
 
             sb.Append("|");
-            for(int i = 0; i < propInfo.Length; i++)
+            for (int i = 0; i < propInfo.Length; i++)
             {
                 if (columnHeaders[i] != "*")
                     sb.Append($" {columnHeaders[i]} |");

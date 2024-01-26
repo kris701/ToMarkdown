@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static ToMarkdown.Strings.ToMarkdownStringExtensions;
+﻿using static ToMarkdown.Strings.ToMarkdownStringExtensions;
 
 namespace ToMarkdown.Tests.Strings
 {

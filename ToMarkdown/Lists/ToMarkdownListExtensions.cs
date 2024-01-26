@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ToMarkdown.Lists
 {
@@ -14,16 +10,17 @@ namespace ToMarkdown.Lists
         /// <summary>
         /// <seealso href="https://www.markdownguide.org/basic-syntax/#unordered-lists">List styles</seealso>. The options are "-", "*" and "+"
         /// </summary>
-        public enum ListStyle {
+        public enum ListStyle
+        {
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
             Dash,
-            Star, 
+            Star,
             Plus
 #pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
         }
         private static char StyleToChar(ListStyle style)
         {
-            switch(style)
+            switch (style)
             {
                 case ListStyle.Dash: return '-';
                 case ListStyle.Star: return '*';
@@ -65,7 +62,7 @@ namespace ToMarkdown.Lists
 
             var sb = new StringBuilder();
             int counter = 1;
-            foreach(var item in list)
+            foreach (var item in list)
                 sb.AppendLine($"{counter++}. {item}");
 
             return sb.ToString();

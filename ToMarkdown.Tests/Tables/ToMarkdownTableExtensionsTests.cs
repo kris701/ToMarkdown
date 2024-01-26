@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ToMarkdown.Tables;
+﻿using ToMarkdown.Tables;
 using ToMarkdown.Tests.TestClasses;
 
 namespace ToMarkdown.Tests.Tables
@@ -119,7 +113,7 @@ namespace ToMarkdown.Tests.Tables
                 "new va");
 
             HeaderCheck(
-                new List<TestClass1>() { new TestClass1(), new TestClass1() }.ToMarkdownTable(new List<string>() { "*", "*" }), 
+                new List<TestClass1>() { new TestClass1(), new TestClass1() }.ToMarkdownTable(new List<string>() { "*", "*" }),
                 new List<string>() { "Value1", "Value2" });
             HeaderCheck(
                 new List<TestClass1>() { new TestClass1(), new TestClass1() }.ToMarkdownTable(new List<string>() { "new name", "*" }),
