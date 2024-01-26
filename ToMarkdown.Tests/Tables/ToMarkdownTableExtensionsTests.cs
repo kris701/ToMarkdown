@@ -1,5 +1,4 @@
-﻿using ToMarkdown.Tables;
-using ToMarkdown.Tests.TestClasses;
+﻿using ToMarkdown.Tests.TestClasses;
 
 namespace ToMarkdown.Tests.Tables
 {

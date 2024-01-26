@@ -1,11 +1,11 @@
 ﻿using System.Text;
 
-namespace ToMarkdown.Lists
+namespace ToMarkdown
 {
     /// <summary>
-    /// Extensions to create markdown lists.
+    /// Markdown Extensions
     /// </summary>
-    public static class ToMarkdownListExtensions
+    public static partial class ToMarkdownExtensions
     {
         /// <summary>
         /// <seealso href="https://www.markdownguide.org/basic-syntax/#unordered-lists">List styles</seealso>. The options are "-", "*" and "+"

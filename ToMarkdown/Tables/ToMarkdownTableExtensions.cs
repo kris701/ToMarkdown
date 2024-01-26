@@ -1,11 +1,8 @@
 ﻿using System.Text;
 
-namespace ToMarkdown.Tables
+namespace ToMarkdown
 {
-    /// <summary>
-    /// Extensions to create markdown tables.
-    /// </summary>
-    public static class ToMarkdownTableExtensions
+    public static partial class ToMarkdownExtensions
     {
         /// <summary>
         /// Allows you to add custom headers.
