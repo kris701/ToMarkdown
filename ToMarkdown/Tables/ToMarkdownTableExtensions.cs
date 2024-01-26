@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace ToMarkdown.Tables
 {
@@ -50,7 +46,7 @@ namespace ToMarkdown.Tables
         }
 
         /// <summary>
-        /// Converts a IEnumerable into a Markdown table.
+        /// Converts a <seealso cref="IEnumerable{T}"/> into a <seealso href="https://www.markdownguide.org/extended-syntax/#tables">markdown table</seealso>.
         /// If the IEnumerable is of a primitive type, the header will be the typename
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -77,7 +73,7 @@ namespace ToMarkdown.Tables
                 throw new ArgumentException($"Custom column header count ({columnHeaders.Count}) must match property count ({propInfo.Length})!");
 
             sb.Append("|");
-            for(int i = 0; i < propInfo.Length; i++)
+            for (int i = 0; i < propInfo.Length; i++)
             {
                 if (columnHeaders[i] != "*")
                     sb.Append($" {columnHeaders[i]} |");
