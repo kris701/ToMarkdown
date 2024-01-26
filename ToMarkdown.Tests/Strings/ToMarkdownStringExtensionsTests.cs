@@ -41,5 +41,14 @@ namespace ToMarkdown.Tests.Strings
         {
             Assert.AreEqual(expected, text.ToMarkdownImage(link));
         }
+
+        [TestMethod]
+        [DataRow("abc")]
+        [DataRow("abc aa")]
+        [DataRow("abc aa\r\n abbb")]
+        public void Can_ConvertStringToCodeBlock(string text)
+        {
+            Assert.AreEqual($"```{Environment.NewLine}{text}{Environment.NewLine}```{Environment.NewLine}", text.ToMarkdownCodeBlock());
+        }
     }
 }

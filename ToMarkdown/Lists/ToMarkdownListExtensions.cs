@@ -68,5 +68,20 @@ namespace ToMarkdown.Tables
 
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Converts a list into a <seealso href="https://www.markdownguide.org/extended-syntax/#definition-lists">markdown definition list</seealso> with a given <paramref name="title"/>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public static string ToMarkdownDefinitionList<T>(this IEnumerable<T> list, string title)
+        {
+            var sb = new StringBuilder(title);
+            foreach (var item in list)
+                sb.AppendLine($": {item}");
+            return sb.ToString();
+        }
     }
 }

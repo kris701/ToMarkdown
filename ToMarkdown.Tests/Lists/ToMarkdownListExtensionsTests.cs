@@ -44,6 +44,13 @@ namespace ToMarkdown.Tests.Lists
             EnumerationCheck(new List<TestClass4>() { new TestClass4() }.ToMarkdownEnumeratedList());
         }
 
+        [TestMethod]
+        public void Can_ReturnCorrectDefinitionList()
+        {
+            IsDefinitionList(new List<int>().ToMarkdownDefinitionList("abc"));
+            IsDefinitionList(new List<int>() { 1, 5 }.ToMarkdownDefinitionList("abc"));
+        }
+
         #region Helper Methods 
 
         private void StyleCheck(string text, ListStyle style)
@@ -72,6 +79,15 @@ namespace ToMarkdown.Tests.Lists
             int counter = 1;
             foreach (var line in split)
                 Assert.IsTrue(line.StartsWith($"{counter++}"));
+        }
+
+        private void IsDefinitionList(string text)
+        {
+            var split = text.Split(Environment.NewLine).ToList();
+            split.RemoveAll(x => x == "");
+            Assert.IsFalse(split[0].StartsWith(":"));
+            for (int i = 1; i < split.Count; i++)
+                Assert.IsTrue(split[i].StartsWith(":"));
         }
 
         #endregion

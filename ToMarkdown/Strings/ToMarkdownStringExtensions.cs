@@ -69,7 +69,6 @@ namespace ToMarkdown.Strings
         /// <summary>
         /// Converts a string to a markdown <seealso href="https://www.markdownguide.org/extended-syntax/#fenced-code-blocks">code block</seealso>.
         /// You can also give it what language it should be <seealso href="https://www.markdownguide.org/extended-syntax/#syntax-highlighting">syntax highlighted</seealso> as.
-        /// 
         /// </summary>
         /// <param name="str"></param>
         /// <param name="language"></param>
