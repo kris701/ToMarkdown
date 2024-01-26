@@ -15,97 +15,95 @@ namespace ToMarkdown.Tests.Tables
         [TestMethod]
         public void Can_ReturnEmptyIfEmpty_Primitives()
         {
-            EmptyCheck(new List<int>());
-            EmptyCheck(new List<double>());
-            EmptyCheck(new List<string>());
+            Assert.AreEqual("", new List<int>().ToMarkdownTable());
+            Assert.AreEqual("", new List<double>().ToMarkdownTable());
+            Assert.AreEqual("", new List<string>().ToMarkdownTable());
 
-            EmptyCheck(new Queue<int>());
-            EmptyCheck(new Queue<double>());
-            EmptyCheck(new Queue<string>());
+            Assert.AreEqual("", new Queue<int>().ToMarkdownTable());
+            Assert.AreEqual("", new Queue<double>().ToMarkdownTable());
+            Assert.AreEqual("", new Queue<string>().ToMarkdownTable());
 
-            EmptyCheck(new HashSet<int>());
-            EmptyCheck(new HashSet<double>());
-            EmptyCheck(new HashSet<string>());
+            Assert.AreEqual("", new HashSet<int>().ToMarkdownTable());
+            Assert.AreEqual("", new HashSet<double>().ToMarkdownTable());
+            Assert.AreEqual("", new HashSet<string>().ToMarkdownTable());
         }
 
         [TestMethod]
         public void Can_ReturnEmptyIfEmpty_Complex()
         {
-            EmptyCheck(new List<TestClass1>());
-            EmptyCheck(new List<TestClass2>());
-            EmptyCheck(new List<TestClass3>());
+            Assert.AreEqual("", new List<TestClass1>().ToMarkdownTable());
+            Assert.AreEqual("", new List<TestClass2>().ToMarkdownTable());
+            Assert.AreEqual("", new List<TestClass3>().ToMarkdownTable());
 
-            EmptyCheck(new Queue<TestClass1>());
-            EmptyCheck(new Queue<TestClass2>());
-            EmptyCheck(new Queue<TestClass3>());
+            Assert.AreEqual("", new Queue<TestClass1>().ToMarkdownTable());
+            Assert.AreEqual("", new Queue<TestClass2>().ToMarkdownTable());
+            Assert.AreEqual("", new Queue<TestClass3>().ToMarkdownTable());
 
-            EmptyCheck(new HashSet<TestClass1>());
-            EmptyCheck(new HashSet<TestClass2>());
-            EmptyCheck(new HashSet<TestClass3>());
+            Assert.AreEqual("", new HashSet<TestClass1>().ToMarkdownTable());
+            Assert.AreEqual("", new HashSet<TestClass2>().ToMarkdownTable());
+            Assert.AreEqual("", new HashSet<TestClass3>().ToMarkdownTable());
         }
 
         [TestMethod]
         public void Can_ReturnSingleColumn_Primitives()
         {
-            TableSizeCheck(new List<int>() { 1 }, 1, 3);
-            TableSizeCheck(new List<string>() { "abc" }, 1, 3);
+            TableSizeCheck(new List<int>() { 1 }.ToMarkdownTable(), 1, 3);
+            TableSizeCheck(new List<string>() { "abc" }.ToMarkdownTable(), 1, 3);
 
-            TableSizeCheck(new HashSet<int>() { 1 }, 1, 3);
-            TableSizeCheck(new HashSet<string>() { "abc" }, 1, 3);
+            TableSizeCheck(new HashSet<int>() { 1 }.ToMarkdownTable(), 1, 3);
+            TableSizeCheck(new HashSet<string>() { "abc" }.ToMarkdownTable(), 1, 3);
         }
 
         [TestMethod]
         public void Can_ReturnSingleColumn_Complex()
         {
-            TableSizeCheck(new List<TestClass1>() { new TestClass1() }, 2, 3);
-            TableSizeCheck(new List<TestClass2>() { new TestClass2() }, 4, 3);
-            TableSizeCheck(new List<TestClass3>() { new TestClass3() }, 2, 3);
+            TableSizeCheck(new List<TestClass1>() { new TestClass1() }.ToMarkdownTable(), 2, 3);
+            TableSizeCheck(new List<TestClass2>() { new TestClass2() }.ToMarkdownTable(), 4, 3);
+            TableSizeCheck(new List<TestClass3>() { new TestClass3() }.ToMarkdownTable(), 2, 3);
 
-            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1() }, 2, 3);
-            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2() }, 4, 3);
-            TableSizeCheck(new HashSet<TestClass3>() { new TestClass3() }, 2, 3);
+            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1() }.ToMarkdownTable(), 2, 3);
+            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2() }.ToMarkdownTable(), 4, 3);
+            TableSizeCheck(new HashSet<TestClass3>() { new TestClass3() }.ToMarkdownTable(), 2, 3);
         }
 
         [TestMethod]
         public void Can_ReturnMultipleColumn_Primitives()
         {
-            TableSizeCheck(new List<int>() { 1, 19, 325 }, 1, 5);
-            TableSizeCheck(new List<int>() { 1, 19, 325, 1355113541 }, 1, 6);
-            TableSizeCheck(new List<string>() { "abc", "q" }, 1, 4);
-            TableSizeCheck(new List<string>() { "abc", "q", "ccc" }, 1, 5);
+            TableSizeCheck(new List<int>() { 1, 19, 325 }.ToMarkdownTable(), 1, 5);
+            TableSizeCheck(new List<int>() { 1, 19, 325, 1355113541 }.ToMarkdownTable(), 1, 6);
+            TableSizeCheck(new List<string>() { "abc", "q" }.ToMarkdownTable(), 1, 4);
+            TableSizeCheck(new List<string>() { "abc", "q", "ccc" }.ToMarkdownTable(), 1, 5);
 
-            TableSizeCheck(new HashSet<int>() { 1, 19, 325 }, 1, 5);
-            TableSizeCheck(new HashSet<int>() { 1, 19, 325, 1355113541 }, 1, 6);
-            TableSizeCheck(new HashSet<string>() { "abc", "q" }, 1, 4);
-            TableSizeCheck(new HashSet<string>() { "abc", "q", "ccc" }, 1, 5);
+            TableSizeCheck(new HashSet<int>() { 1, 19, 325 }.ToMarkdownTable(), 1, 5);
+            TableSizeCheck(new HashSet<int>() { 1, 19, 325, 1355113541 }.ToMarkdownTable(), 1, 6);
+            TableSizeCheck(new HashSet<string>() { "abc", "q" }.ToMarkdownTable(), 1, 4);
+            TableSizeCheck(new HashSet<string>() { "abc", "q", "ccc" }.ToMarkdownTable(), 1, 5);
         }
 
         [TestMethod]
         public void Can_ReturnMultipleColumn_Complex()
         {
-            TableSizeCheck(new List<TestClass1>() { new TestClass1(), new TestClass1() }, 2, 4);
-            TableSizeCheck(new List<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }, 2, 5);
-            TableSizeCheck(new List<TestClass2>() { new TestClass2(), new TestClass2() }, 4, 4);
-            TableSizeCheck(new List<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }, 4, 5);
-            TableSizeCheck(new List<TestClass3>() { new TestClass3(), new TestClass3() }, 2, 4);
-            TableSizeCheck(new List<TestClass3>() { new TestClass3(), new TestClass3(), new TestClass3() }, 2, 5);
+            TableSizeCheck(new List<TestClass1>() { new TestClass1(), new TestClass1() }.ToMarkdownTable(), 2, 4);
+            TableSizeCheck(new List<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }.ToMarkdownTable(), 2, 5);
+            TableSizeCheck(new List<TestClass2>() { new TestClass2(), new TestClass2() }.ToMarkdownTable(), 4, 4);
+            TableSizeCheck(new List<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }.ToMarkdownTable(), 4, 5);
+            TableSizeCheck(new List<TestClass3>() { new TestClass3(), new TestClass3() }.ToMarkdownTable(), 2, 4);
+            TableSizeCheck(new List<TestClass3>() { new TestClass3(), new TestClass3(), new TestClass3() }.ToMarkdownTable(), 2, 5);
 
-            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1() }, 2, 4);
-            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }, 2, 5);
-            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2() }, 4, 4);
-            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }, 4, 5);
+            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1() }.ToMarkdownTable(), 2, 4);
+            TableSizeCheck(new HashSet<TestClass1>() { new TestClass1(), new TestClass1(), new TestClass1() }.ToMarkdownTable(), 2, 5);
+            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2() }.ToMarkdownTable(), 4, 4);
+            TableSizeCheck(new HashSet<TestClass2>() { new TestClass2(), new TestClass2(), new TestClass2() }.ToMarkdownTable(), 4, 5);
         }
 
         [TestMethod]
         public void Can_SetCustomColumnHeaders_Primitive()
         {
             HeaderCheck(
-                new List<int>() { 1, 2 },
-                "*",
+                new List<int>() { 1, 2 }.ToMarkdownTable(new List<string>() { "*" }),
                 "Int32");
             HeaderCheck(
-                new List<int>() { 1, 2 },
-                "Special",
+                new List<int>() { 1, 2 }.ToMarkdownTable(new List<string>() { "Special" }),
                 "Special");
         }
 
@@ -113,60 +111,46 @@ namespace ToMarkdown.Tests.Tables
         public void Can_SetCustomColumnHeaders_Complex()
         {
             HeaderCheck(
-                new List<TestClass4>() { new TestClass4() },
-                "*",
+                new List<TestClass4>() { new TestClass4() }.ToMarkdownTable(new List<string>() { "*" }),
                 "Value1");
 
             HeaderCheck(
-                new List<TestClass4>() { new TestClass4() },
-                "new va",
+                new List<TestClass4>() { new TestClass4() }.ToMarkdownTable(new List<string>() { "new va" }),
                 "new va");
 
             HeaderCheck(
-                new List<TestClass1>() { new TestClass1(), new TestClass1() }, 
-                new List<string>() { "*", "*" },
+                new List<TestClass1>() { new TestClass1(), new TestClass1() }.ToMarkdownTable(new List<string>() { "*", "*" }), 
                 new List<string>() { "Value1", "Value2" });
             HeaderCheck(
-                new List<TestClass1>() { new TestClass1(), new TestClass1() },
-                new List<string>() { "new name", "*" },
+                new List<TestClass1>() { new TestClass1(), new TestClass1() }.ToMarkdownTable(new List<string>() { "new name", "*" }),
                 new List<string>() { "new name", "Value2" });
             HeaderCheck(
-                new List<TestClass1>() { new TestClass1(), new TestClass1() },
-                new List<string>() { "new name", "other (m/s)" },
+                new List<TestClass1>() { new TestClass1(), new TestClass1() }.ToMarkdownTable(new List<string>() { "new name", "other (m/s)" }),
                 new List<string>() { "new name", "other (m/s)" });
         }
 
         #region Helper Methods 
 
-        private void EmptyCheck<T>(IEnumerable<T> item)
+        private void HeaderCheck(string text, List<string> expected)
         {
-            var result = item.ToMarkdownTable();
-            Assert.AreEqual("", result);
-        }
-
-        private void HeaderCheck<T>(IEnumerable<T> item, List<string> input, List<string> expected)
-        {
-            var result = item.ToMarkdownTable(input);
-            var split = result.Split(Environment.NewLine).ToList();
+            var split = text.Split(Environment.NewLine).ToList();
             var columns = split[0].Split('|').ToList();
             columns.RemoveAll(x => x == "");
             for (int i = 0; i < expected.Count; i++)
                 Assert.AreEqual(expected[i], columns[i].Trim());
         }
 
-        private void HeaderCheck<T>(IEnumerable<T> item, string input, string expected)
+        private void HeaderCheck(string text, string expected)
         {
-            var result = item.ToMarkdownTable(input);
-            var split = result.Split(Environment.NewLine).ToList();
+            var split = text.Split(Environment.NewLine).ToList();
             var columns = split[0].Split('|').ToList();
             columns.RemoveAll(x => x == "");
             Assert.AreEqual(expected, columns[0].Trim());
         }
 
-        private void TableSizeCheck<T>(IEnumerable<T> item, int expectedColumns, int expectedRows)
+        private void TableSizeCheck(string text, int expectedColumns, int expectedRows)
         {
-            var result = item.ToMarkdownTable();
-            var split = result.Split(Environment.NewLine).ToList();
+            var split = text.Split(Environment.NewLine).ToList();
             split.RemoveAll(x => x == "");
             Assert.AreEqual(expectedRows, split.Count);
             foreach (var row in split)
