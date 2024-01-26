@@ -19,6 +19,9 @@ namespace ToMarkdown.Tests.Strings
         [DataRow("a", StringStyle.Italic, "*a*")]
         [DataRow("a", StringStyle.StrikeThrough, "~~a~~")]
         [DataRow("a", StringStyle.Code, "`a`")]
+        [DataRow("a", StringStyle.Highlight, "==a==")]
+        [DataRow("a", StringStyle.Subscript, "~a~")]
+        [DataRow("a", StringStyle.Superscript, "^a^")]
         public void Can_OutputCorrectStyle(string input, StringStyle style, string expected)
         {
             Assert.AreEqual(expected, input.ToMarkdown(style));

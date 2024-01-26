@@ -18,7 +18,7 @@ namespace ToMarkdown.Strings
         public enum StringStyle { 
             None,
             Heading1, Heading2, Heading3,
-            Bold, Italic, StrikeThrough, Code, BlockQuote
+            Bold, Italic, StrikeThrough, Code, BlockQuote, Highlight, Subscript, Superscript
         }
         /// <summary>
         /// Converts a string into a markdown string with a given <seealso cref="StringStyle"/>.
@@ -40,6 +40,9 @@ namespace ToMarkdown.Strings
                 case StringStyle.StrikeThrough: return $"~~{str}~~";
                 case StringStyle.Code: return $"`{str}`";
                 case StringStyle.BlockQuote: return $"> {str}";
+                case StringStyle.Highlight: return $"=={str}==";
+                case StringStyle.Subscript: return $"~{str}~";
+                case StringStyle.Superscript: return $"^{str}^";
                 default: throw new ArgumentException("Unknown string style!");
             }
         }

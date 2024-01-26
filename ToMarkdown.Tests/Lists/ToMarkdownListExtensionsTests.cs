@@ -51,6 +51,14 @@ namespace ToMarkdown.Tests.Lists
             IsDefinitionList(new List<int>() { 1, 5 }.ToMarkdownDefinitionList("abc"));
         }
 
+        [TestMethod]
+        public void Can_ReturnCorrectTask()
+        {
+            IsTaskList(new List<int>().ToMarkdownTaskList());
+            IsTaskList(new List<int>() { 1, 5 }.ToMarkdownTaskList());
+            IsTaskList(new List<int>() { 1, 5 }.ToMarkdownTaskList(new List<bool>() { false, true }));
+        }
+
         #region Helper Methods 
 
         private void StyleCheck(string text, ListStyle style)
@@ -88,6 +96,14 @@ namespace ToMarkdown.Tests.Lists
             Assert.IsFalse(split[0].StartsWith(":"));
             for (int i = 1; i < split.Count; i++)
                 Assert.IsTrue(split[i].StartsWith(":"));
+        }
+
+        private void IsTaskList(string text)
+        {
+            var split = text.Split(Environment.NewLine).ToList();
+            split.RemoveAll(x => x == "");
+            for (int i = 0; i < split.Count; i++)
+                Assert.IsTrue(split[i].StartsWith("- [ ]") || split[i].StartsWith("- [x]"));
         }
 
         #endregion

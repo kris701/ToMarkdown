@@ -83,5 +83,45 @@ namespace ToMarkdown.Tables
                 sb.AppendLine($": {item}");
             return sb.ToString();
         }
+
+        /// <summary>
+        /// Converts a list into a <seealso href="https://www.markdownguide.org/extended-syntax/#task-lists">markdown task list</seealso>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        public static string ToMarkdownTaskList<T>(this IEnumerable<T> list)
+        {
+            var sb = new StringBuilder();
+            foreach (var item in list)
+                sb.AppendLine($"- [ ] {item}");
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// Converts a list into a <seealso href="https://www.markdownguide.org/extended-syntax/#task-lists">markdown task list</seealso>.
+        /// This also has a list defining what items should be marked as checked.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="list"></param>
+        /// <param name="checks"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
+        public static string ToMarkdownTaskList<T>(this IEnumerable<T> list, List<bool> checks)
+        {
+            if (list.Count() != checks.Count)
+                throw new ArgumentException("Checks list must contain just as many items as the input list!");
+
+            var sb = new StringBuilder();
+            var index = 0;
+            foreach (var item in list)
+            {
+                if (checks[index++])
+                    sb.AppendLine($"- [x] {item}");
+                else
+                    sb.AppendLine($"- [ ] {item}");
+            }
+            return sb.ToString();
+        }
     }
 }
