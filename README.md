@@ -24,3 +24,53 @@ Currently there are:
   * Includes different list styles (enumerated, unordered and task list) as well as definition lists
 * [Any type to markdown strings](./ToMarkdown/Strings/ToMarkdownStringExtensions.cs)
   * Includes links and different text formats
+
+# Examples
+Here is a set of examples of how to use the package:
+
+## Example 1
+
+```csharp
+var items = new[]
+{
+    new { Name = "John", Value = -1 },
+    new { Name = "Allan", Value = 60 },
+    new { Name = "Peter", Value = 46703 }
+};
+var text = items.ToMarkdownTable();
+```
+
+Gives:
+
+| Name | Value |
+| - | - |
+| John | -1 |
+| Allan | 60 |
+| Peter | 46703 |
+
+## Example 2
+
+```csharp
+var stringValue = "some text";
+var text = stringValue.ToMarkdown(ToMarkdownExtensions.StringStyle.StrikeThrough);
+```
+Gives:
+
+~~some text~~
+
+## Example 3
+
+```csharp
+var list = new List<string>()
+{
+    "First Item",
+    "Second Item",
+    "Third Item"
+};
+var text = list.ToMarkdownEnumeratedList();
+```
+Gives:
+
+1. First Item
+2. Second Item
+3. Third Item
